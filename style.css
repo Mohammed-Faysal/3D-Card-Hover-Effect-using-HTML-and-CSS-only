@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    width: 1000px;
+    text-align: center;
+    padding: 25px;
+    padding-top: 0;
+}
+
+
+.wrapper .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+}
+
+@media screen and (max-width: 1000px){
+    .wrapper{
+        gap: 130px;
+        padding-top: 140px;
+    }
+    
+    .wrapper .card{
+        height: 60vh;
+    }
+}
+
+.card .imgContainer{
+    width: 250px;
+    aspect-ratio: 2 / 3;
+    background: var(--imgUrl);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    transition: 500ms ease;
+    box-shadow: 0 10px 30px #000000cc;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.card .img{
+    position: absolute;
+    width: 250px;
+    aspect-ratio: 3 / 4;
+    background: var(--pngImgUrl);
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    transform: translate3d(0px, 0px, 0px) scale(1);
+    transition: 500ms ease;
+    transform-origin: bottom;
+    z-index: 10;
+    opacity: 0;
+}
+
+.img .overLayer{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -20px;
+    width: 100%;
+    height: 60px;
+    filter: blur(13px);
+    opacity: 1;
+    transition: opacity 500ms ease;
+    background: #000;
+}
+
+.imgContainer:hover{
+    box-shadow: 0px 50px 50px #000000cc;
+    transform: translate3d(0px, 0px, 50px) rotate3d(1, 0, 0, 55deg);
+    filter: brightness(30%);
+}
+
+.imgContainer:hover ~ .img{
+    transform: translate3d(0px, -50px, 50px) scale(1.2);
+    opacity: 1;
+}
